@@ -1,6 +1,8 @@
 schemer_import('darksteel.prf')
 
-tnm034(im)
+im = imread('db0_1.jpg');
+Translation(im);
+tnm034(im);
 
 
 
