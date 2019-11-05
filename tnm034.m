@@ -10,3 +10,4 @@ function id = tnm034(im)
 %
 % Your program code.
 %%%%%%%%%%%%%%%%%%%%%%%%%% 
+id = 0;
