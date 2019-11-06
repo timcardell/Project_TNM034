@@ -1,0 +1,1 @@
+function RotatedIm = Rotation(im, point, angle)
