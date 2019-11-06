@@ -24,7 +24,8 @@ ColorCorrected_im = ColorCorrection(im);
  
  Skin_mask = SkinMask(Cb,Cr,130);
 
+ EyeMask = EyeMap(Y,Cb,Cr);
 
-imshow(Skin_mask)
+imshow(EyeMask)
  id = 0;
 end

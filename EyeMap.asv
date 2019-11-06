@@ -1,9 +1,8 @@
 function Eye_map = EyeMap(Y,Cr,Cb)
+EyeMapC = 1/3 * ((Cb.^2) + (255-Cr).^2 + (Cb./Cr));
 
-EyeMapC = 1/3 * ((Cb.^2) + ((255-Cr).^2) + (Cb./Cr));
-
-g = strel('disk',2);
+g = strel('line',10, 90);
 EyeMapL = (imdilate(Y,g))./(imerode(Y,g)+1);
 Eye_map =  EyeMapC .* EyeMapL;
-(Cb./Cr)
+E
 end
