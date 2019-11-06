@@ -11,6 +11,15 @@ function id = tnm034(im)
 % Your program code.
 %%%%%%%%%%%%%%%%%%%%%%%%%% 
 VecIn =[40, 20];
-Translation(im(:,:,3),VecIn);
+
+%Change lightning illumination
+
+%Change Color space to most accurate one (YCbCr)
+YCBR = rgb2ycbcr(im);
+Y = YCBR(:,:,1);
+Cb = YCBR(:,:,2);
+Cr = YCBR(:,:,3);
+
+Translation(YCBR,VecIn);
 
 id = 0;

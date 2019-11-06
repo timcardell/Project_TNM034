@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 function TransImage = Translation(im, VecIn)
-TransImage = imtranslate(im,VecIn,'bicubic');
-%c = imfuse(im,TransImage,'blend');
-%imshow(c)
+
+TransImage = imtranslate(im,VecIn,'cubic');
+imshow(TransImage)
 
 title('Translated Image')
