@@ -10,4 +10,7 @@ function id = tnm034(im)
 %
 % Your program code.
 %%%%%%%%%%%%%%%%%%%%%%%%%% 
+VecIn =[40, 20];
+Translation(im(:,:,3),VecIn);
+
 id = 0;
