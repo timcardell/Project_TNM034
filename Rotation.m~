@@ -15,7 +15,7 @@ centerPointY = floor((height/2)+1);
 
 
 %do the actual transformation
-[theta, rho] = cart2pol((pointX-centerPointX), (pointY- centerPointY));
+[rho, theta] = cart2pol((pointX-centerPointX), (pointY- centerPointY));
 
 radians = rotAngle*pi/180;
 
@@ -30,15 +30,13 @@ newTheta = theta - radians;
 newCenterPointX = centerPointX + X;
 newCenterPointY = centerPointY + Y;
 
-padX = round(abs(pointX-newCenterPointX));
-padY = round(abs(pointY-newCenterPointY));
-
-
+padX = abs(pointX-newCenterPointX);
+padY = abs(pointY-newCenterPointY);
 
 padded = padarray(im, [padX, padY]);
 
 
-RotatedIm = imrotate(padded, angle, 'bilinear', 'crop');
+RotatedIm = imrotate(im, angle, 'bilinear', 'crop');
 
 
 
