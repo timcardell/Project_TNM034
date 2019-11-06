@@ -9,5 +9,5 @@ tnm034(im)
 
 test = Rotation(im, 40, 40, 5);
 
-imshow(test)
+
 %tnm034(im);

@@ -2,6 +2,6 @@
 function TransImage = Translation(im, VecIn)
 
 TransImage = imtranslate(im,VecIn,'cubic');
-imshow(TransImage)
+%imshow(TransImage)
 
-title('Translated Image')
+%title('Translated Image')

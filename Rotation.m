@@ -38,7 +38,9 @@ padY = round(abs(pointY-newCenterPointY));
 padded = padarray(im, [padX, padY]);
 
 
-RotatedIm = imrotate(padded, angle, 'bilinear', 'crop');
+
+
+RotatedIm = imrotate(padded, rotAngle, 'bilinear', 'crop');
 
 
 
