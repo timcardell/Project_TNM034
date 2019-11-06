@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-function TransImage = Translation(im)
+function TransImage = Translation(im, VecIn)
 
-TransImage = im
-figure
-imshow(im)
+TransImage = imtranslate(im,VecIn,'cubic');
+imshow(TransImage)
+
 title('Translated Image')
