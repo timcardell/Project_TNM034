@@ -6,5 +6,5 @@ mask = 255 - (merge + shadows);
 
 mask = mask >= Threshold;
 
-output = im2double(imfill(mask,'holes'));
+output = double(imfill(mask,'holes'));
 end
