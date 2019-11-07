@@ -24,7 +24,11 @@ ColorCorrected_im = ColorCorrection(im);
  
  Skin_mask = SkinMask(Cb,Cr,130);
 
+ mouthMap = MouthMap(Cb, Cr);
+ 
+ %imshow(mouthMap);
 
-imshow(Skin_mask)
+ %imshow(Skin_mask);
+ 
  id = 0;
 end
