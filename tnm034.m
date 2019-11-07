@@ -15,20 +15,16 @@ function id = tnm034(im)
 ColorCorrected_im = ColorCorrection(im);
 
 %Change Color space to most accurate one (YCbCr)
- YCBCR = rgb2ycbcr(ColorCorrected_im);
- Y = YCBCR(:,:,1);
- Cb = YCBCR(:,:,2);
- Cr = YCBCR(:,:,3);
+ [~,Cb,Cr] = YCbCr(ColorCorrected_im);
 
- %Threshold to find skincolor
+ %Threshold to find Skin_Mask
  
  Skin_mask = SkinMask(Cb,Cr,130);
-
- mouthMap = MouthMap(Cb, Cr);
  
- %imshow(mouthMap);
-
- %imshow(Skin_mask);
+ FaceImage = ColorCorrected_im.*uint8(Skin_mask);
+ [Y,Cb,Cr] = YCbCr(FaceImage);
  
+ EyeMask = EyeMap(Y,Cb,Cr);
+
  id = 0;
 end

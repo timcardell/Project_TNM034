@@ -1,0 +1,20 @@
+function Eye_map = EyeMap(Y,Cr,Cb)
+
+Y = im2double(Y);
+Cr = im2double(Cr);
+Cb = im2double(Cb);
+
+Cb_squared  = uint8(255 * mat2gray(Cb.^2));
+TransposeCr = uint8(255 * mat2gray((255-Cr).^2));
+CbDivCr  = uint8(255* mat2gray(Cb./Cr));
+
+EyeMapC = (1/3) .* ( Cb_squared + TransposeCr + CbDivCr);
+
+g = strel('disk',9);
+EyeMapL = (imdilate(Y,g))./(imerode(Y,g)+1);
+
+EyeMapL_Normalized = uint8(255 * mat2gray(EyeMapL));
+Eye_map =  EyeMapL_Normalized .* EyeMapC;
+
+imshow(EyeMapC)
+end
