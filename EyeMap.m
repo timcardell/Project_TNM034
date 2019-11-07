@@ -23,6 +23,6 @@ EyeMapC_Normalized = adapthisteq(EyeMapC,'clipLimit',0.02,'Distribution','raylei
 Eye_map =  EyeMapC_Normalized .* EyeMapL_Normalized;
 Eye_map_Normalized = uint8(255 * mat2gray(Eye_map));
 
-imshow(EyeMapC_Normalized)
+imshow(Eye_map_Normalized)
 
 end
