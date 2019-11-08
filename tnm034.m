@@ -25,6 +25,8 @@ ColorCorrected_im = ColorCorrection(im);
  [Y,Cb,Cr] = YCbCr(FaceImage);
  
  EyeMask = EyeMap(Y,Cb,Cr);
-
+ imshow(FaceImage);
+ imshow(FaceImage.*uint8(EyeMask))
+ 
  id = 0;
 end
