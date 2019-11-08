@@ -24,7 +24,11 @@ ColorCorrected_im = ColorCorrection(im);
  FaceImage = ColorCorrected_im.*uint8(Skin_mask);
  [Y,Cb,Cr] = YCbCr(FaceImage);
  
- EyeMask = EyeMap(Y,Cb,Cr);
+ %EyeMask = EyeMap(Y,Cb,Cr);
+ 
+ mouth = MouthMap(Cb, Cr, Skin_mask);
+ 
+ imshow(mouth);
 
  id = 0;
 end
