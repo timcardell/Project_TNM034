@@ -22,7 +22,7 @@ EyeMapC_Normalized =  histeq(EyeMapC);
 Eye_map = EyeMapL.* EyeMapC_Normalized;
 
 Eye_map = imdilate(Eye_map, g);
-Eye_map = (Eye_map >= 255);
+Eye_map = uint8((Eye_map >= 255));
 
 imshow(Eye_map)
 

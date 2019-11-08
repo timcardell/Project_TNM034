@@ -23,6 +23,10 @@ function id = tnm034(im)
 
      FaceImage = ColorCorrected_im.*uint8(Skin_mask);
      [Y,Cb,Cr] = YCbCr(FaceImage);
+     
+     %Trace Shape from face
+     
+     
 
  %Find The eye mask containing hopefully only the persons eyes
      EyeMask = EyeMap(Y,Cb,Cr);
@@ -34,10 +38,11 @@ function id = tnm034(im)
  
  %Find Triangulation between mouth and eyes
     
-    
+     
+     
  %Show Images
-    %    imshow(Mouth_Image);
-%      figure
-    %imshow(FaceImage);
+     imshow(Mouth_Image);
+     figure
+     imshow(Eye_Image);
  id = 0;
 end
