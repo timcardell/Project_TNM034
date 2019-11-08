@@ -1,28 +1,30 @@
-function Eye_map = EyeMap(Y,Cr,Cb)
+function Eye_map = EyeMap(Y,Cb,Cr)
 
 Y = im2double(Y);
 Cr = im2double(Cr);
 Cb = im2double(Cb);
 
-Cb_squared  = uint8(255 * mat2gray(Cb.*Cb));
-TransposeCr = uint8(255 * mat2gray((255-Cr).^2));
-CbDivCr = uint8(255 * mat2gray(Cb./Cr));
+Cb_squared  = uint8(255 .*(Cb.^2));
+TransposeCr = uint8(255 .*(1-Cr));
+CbDivCr = uint8(255 .*(Cb./Cr));
 
-EyeMapC =  ( (1/3).*Cb_squared + (1/3).*TransposeCr + (1/3).* CbDivCr);
+EyeMapC = 1/3.*(Cb_squared) + 1/3.*((TransposeCr).^2) + 1/3.*(CbDivCr) ;
 
-g = strel('line',15, 90);
-
+g = strel('disk',7);
 Numerator = imdilate(Y,g);
-Denominator = imerode(Y,g) + 1;
+Denominator = imerode(Y,g)+ 1;
 
 EyeMapL = Numerator./Denominator;
 
-EyeMapL_Normalized = uint8(255 * mat2gray(EyeMapL));
-EyeMapC_Normalized = adapthisteq(EyeMapC,'clipLimit',0.02,'Distribution','rayleigh');
+EyeMapL = uint8(EyeMapL);
+EyeMapC_Normalized =  histeq(EyeMapC);
 
-Eye_map =  EyeMapC_Normalized .* EyeMapL_Normalized;
-Eye_map_Normalized = uint8(255 * mat2gray(Eye_map));
+Eye_map = EyeMapL.* EyeMapC_Normalized;
 
-imshow(EyeMapC_Normalized)
+Eye_map = imdilate(Eye_map, g);
+Eye_map = (Eye_map >= 255);
+
+imshow(Eye_map)
+
 
 end
