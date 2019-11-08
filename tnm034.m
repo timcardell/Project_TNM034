@@ -26,18 +26,19 @@ function id = tnm034(im)
 
  %Find The eye mask containing hopefully only the persons eyes
      EyeMask = EyeMap(Y,Cb,Cr);
-     Eye_Image = FaceImage .* EyeMask;      
-  
+
  %Find the mouth mask containing hopefully only the persons mouth
-     mouth = MouthMap(Cb, Cr, Skin_mask);
-     Mouth_Image = FaceImage .* mouth;
- 
+     mouth = MouthMap(Cb, Cr);
+     
  %Find Triangulation between mouth and eyes
-    
+    angle = FaceTriangulation(mouth, EyeMask);
     
  %Show Images
-    %    imshow(Mouth_Image);
-%      figure
-    %imshow(FaceImage);
- id = 0;
+  
+   
+    
+    
+    id = 0;
 end
+
+
