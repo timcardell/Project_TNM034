@@ -31,11 +31,11 @@ function id = tnm034(im)
      mouth = MouthMap(Cb, Cr);
      
  %Find Triangulation between mouth and eyes
-    angle = FaceTriangulation(mouth, EyeMask);
+    angle = FaceTriangulation(mouth, EyeMask,im);
     
  %Show Images
-  
-   
+hold on
+   imshow()
     
     
     id = 0;
