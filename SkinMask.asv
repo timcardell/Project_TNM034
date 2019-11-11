@@ -7,7 +7,7 @@ mask = 255 - (merge + shadows);
 mask = (mask >= Threshold);
 g = strel('disk', 30);
 mask = imopen(mask,g);
-
+g = strel('disk', )
 output = imfill(mask,'holes');
 
 end
