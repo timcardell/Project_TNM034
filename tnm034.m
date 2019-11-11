@@ -31,10 +31,16 @@ function id = tnm034(im)
  %Find the mouth mask containing hopefully only the persons mouth
      mouth = MouthMap(Cb, Cr);
  %Find Triangulation between mouth and eyes
-  %  angle = FaceTriangulation(mouth, EyeMask,im);
+    [angle, pointX, pointY] = FaceTriangulation(mouth, EyeMask,im);
     
  %Show Images
- imshow(FaceImage)
+hold on
+figure
+ 
+ rot = Rotation(im, pointX, pointY, angle);
+ 
+ imshow(rot)
+    
     id = 0;
 end
 

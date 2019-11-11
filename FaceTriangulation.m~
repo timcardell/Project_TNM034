@@ -1,8 +1,28 @@
-function [angle] = FaceTriangulation(mouthMap,eyeMap)
+function [angle, pointX, pointY] = FaceTriangulation(mouthMap, eyeMap,im)
 
-%get left eye and right eye
-%get middle mouth pos, create triangle and getb the angle to know how much
-%the image should be rotated.
+BW = (255*eyeMap) + mouthMap;
+[labelImage] = bwlabel(BW ~= 0);
+stats = regionprops('table',labelImage,'Centroid')
+centers = stats.Centroid;
+angle = 1;
+t = delaunayTriangulation(centers)
+imshow(im)
+hold on
+plot(centers(:,1),centers(:,2), 'b*')
+hold on
+triplot(t)
+hold on
+
+
+%%get angle
+
+a1 = [1 0];
+
+angle = acos(dot(a1, (1./(centers(1,:).^2 + centers(2,:).^2)).*(centers(1,:)-centers(2,:))))
+pointX = centers(1,1)-centers(2,1);
+pointY = centers(1,2)-centers(2,2);
+
+
 
 end
 
