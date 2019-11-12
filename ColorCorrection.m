@@ -1,10 +1,14 @@
 function output = ColorCorrection(im)
-dim=size(im,3);
-output=zeros(size(im));    
-
-    for j=1:dim
-        scalVal=sum(sum(im(:,:,j)))/numel(im(:,:,j));
-        output(:,:,j)=im(:,:,j)*(127.5/scalVal);
-    end
-    output = uint8(output);
+[m,n,~]=size(im);
+ Rmean = sum(sum(im(:,:,1)))/(m*n);
+ Gmean = sum(sum(im(:,:,2)))/(m*n);
+ Bmean = sum(sum(im(:,:,3)))/(m*n);
+ Avg = mean([Rmean Gmean Bmean]);
+ Kr = Avg/Rmean;
+ Kg = Avg/Gmean;
+ Kb = Avg/Bmean;
+ output(:,:,1) = Kr*double(im(:,:,1));
+ output(:,:,2) = Kg*double(im(:,:,2));
+ output(:,:,3) = Kb*double(im(:,:,3));
+ output = uint8(output);
 end
