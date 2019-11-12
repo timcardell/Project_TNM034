@@ -9,7 +9,7 @@ t = delaunayTriangulation(centers);
 
 imshow(im)
 hold on
-plot(centers(:,1),centers(:,2), 'ro')
+plot(centers(:,1),centers(:,2),'ro')
 hold on
 triplot(t)
 hold on
@@ -18,18 +18,13 @@ hold on
 %%get angle
 
 a1 = [1 0];
-angle = acos(dot(a1, (1./(centers(1,:).^2 + centers(2,:).^2)).*(centers(1,:)-centers(2,:))))
-
-
 eyeDiff = centers(1,:) - centers(2,:)
 a2 = eyeDiff ./ norm(eyeDiff);
-angle = -acos(dot(a1, a2));
+angle = acos(dot(a1, a2));
 
 if(eyeDiff < 0)
-    angle = -angle;
+    angle = angle;
 end
-
-
 
 pointX = 100;
 pointY = 100;
