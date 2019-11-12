@@ -26,7 +26,7 @@ function id = tnm034(im)
 
  %Find The eye mask containing hopefully only the persons eyes
      EyeMask = EyeMap(Y,Cb,Cr);
-     EyeMask=uint8(EyeMask);
+
  %Find the mouth mask containing hopefully only the persons mouth
      mouth = MouthMap(Cb, Cr);
  %Find Triangulation between mouth and eyes
@@ -34,7 +34,7 @@ function id = tnm034(im)
     
  %Show Images
     rot = Rotation(ColorCorrected_im, pointX, pointY, angle);
-    imshow(FaceImage.*EyeMask)
+    imshow(FaceImage.*uint8(EyeMask))
 end
 
 

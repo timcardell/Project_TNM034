@@ -1,6 +1,6 @@
 function [angle, pointX, pointY] = FaceTriangulation(mouthMap, eyeMap,im)
 
-BW = uint8(eyeMap) + uint8(mouthMap);
+BW = eyeMap + mouthMap;
 [labelImage] = bwlabel(BW ~= 0);
 stats = regionprops('table',labelImage,'Centroid');
 centers = stats.Centroid;

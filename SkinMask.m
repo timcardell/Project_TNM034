@@ -8,7 +8,7 @@ mask = imgaussfilt(mask);
 
 output = imbinarize(mask,'global');
  g = strel('disk', 7);
- output = imclose(output,g)
+ output = imclose(output,g);
  output = imfill(output,'holes');
  g = strel('disk', 22);
  output = imerode(output,g);

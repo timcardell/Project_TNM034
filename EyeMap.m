@@ -26,9 +26,10 @@ EyeMapC_Normalized =  histeq(EyeMapC);
 Eye_map = imfuse(EyeMapL, EyeMapC_Normalized, 'blend');
 Eye_map = uint8(Eye_map);
 
+
 SE2 = strel('sphere',7);
+
 Eye_map = imopen(Eye_map, SE2);
 Eye_map = Eye_map >=120;
-
 
 end
