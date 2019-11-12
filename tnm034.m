@@ -13,12 +13,12 @@ function id = tnm034(im)
 
 %Change lightning illumination
     ColorCorrected_im = ColorCorrection(im);
-    threshold = 0.49*255
+    threshold = 0.49*255;
     
 %Change Color space to most accurate one (YCbCr)
      [~,Cb,Cr] = YCbCr(ColorCorrected_im);
 
- %Threshold to find Skin_Mask
+%Threshold to find Skin_Mask
  
      Skin_mask = SkinMask(Cb,Cr,threshold);
 
@@ -31,7 +31,7 @@ function id = tnm034(im)
  %Find the mouth mask containing hopefully only the persons mouth
      mouth = MouthMap(Cb, Cr);
  %Find Triangulation between mouth and eyes
-    [angle, pointX, pointY] = FaceTriangulation(mouth, EyeMask,im);
+    [angle, pointX, pointY] = FaceTriangulation(mouth, EyeMask, im);
     
  %Show Images
 hold on
