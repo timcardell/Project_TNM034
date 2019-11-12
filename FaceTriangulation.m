@@ -18,19 +18,21 @@ hold on
 %%get angle
 
 a1 = [1 0];
-angle = acos(dot(a1, (1./(centers(1,:).^2 + centers(2,:).^2)).*(centers(1,:)-centers(2,:))));
+angle = acos(dot(a1, (1./(centers(1,:).^2 + centers(2,:).^2)).*(centers(1,:)-centers(2,:))))
 
-if( centers(1,:) - centers(2,:) < 0)
-    angle = acos(dot(a1, (1./(centers(1,:).^2 + centers(2,:).^2)).*(centers(1,:)-centers(2,:))));
+
+eyeDiff = centers(1,:) - centers(2,:)
+a2 = eyeDiff ./ norm(eyeDiff);
+angle = -acos(dot(a1, a2));
+
+if(eyeDiff < 0)
+    angle = -angle;
 end
 
-if( centers(1,:) - centers(2,:) > 0)
-    angle = -acos(dot(a1, (1./(centers(1,:).^2 + centers(2,:).^2)).*(centers(1,:)-centers(2,:))));
-end
 
 
-pointX = centers(3,1);
-pointY = centers(3,2);
+pointX = 100;
+pointY = 100;
 
 
 

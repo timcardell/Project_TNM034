@@ -12,12 +12,17 @@ function id = tnm034(im)
 %%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 %Change lightning illumination
+<<<<<<< HEAD
+    ColorCorrected_im = ColorCorrection(im);
+    threshold = 0.49*255;
+=======
     ColorCorrected_im = ColorCorrection(im);    
+>>>>>>> master
     
 %Change Color space to most accurate one (YCbCr)
      [~,Cb,Cr] = YCbCr(ColorCorrected_im);
 
- %Threshold to find Skin_Mask
+%Threshold to find Skin_Mask
  
      Skin_mask = SkinMask(Cb,Cr);
 
