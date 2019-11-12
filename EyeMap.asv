@@ -30,16 +30,9 @@ g2 = strel('sphere',7);
 
 
 Eye_map = Eye_map >=120;
-stats = regionprops('table',Eye_map,'Area');
-idx = find([stats.Area] <= 210);
-CC = bwconncomp(Eye_map);
-
-Eye_map = ismember(labelmatrix(CC),idx);
-
-if(CC.NumObjects > 2)
-    Eye_map = imopen(Eye_map, g2);
-end
-
+stats = regionprops('table',Eye_map,'Centroid','area')
+Eye_map = ismember(Eye_map)
+Eye_map = imopen(Eye_map, g2);
 
 imshow(Eye_map)
 hold on

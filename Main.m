@@ -1,5 +1,5 @@
 
 schemer_import('darksteel.prf', true);
-im = imread('db1_04.jpg');
+im = imread('db1_16.jpg');
 tnm034(im);
->>>>>>> master
+
