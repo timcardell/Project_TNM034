@@ -32,20 +32,25 @@ function id = tnm034(im)
  %Find Triangulation between mouth and eyes
   [angle, RotPoint] = FaceTriangulation(mouth,EyeMask,im);
     
+ %Show Images
+ 
  %Rotate image
   rot = Rotation(ColorCorrected_im, RotPoint(1), RotPoint(2), angle);
   
-  %Scale image
-  [ScaledIm,scale] = Scaling(rot,eyes);
-  %Scale Rotationpoint to the new images dimension
+  %Scale and crop image
+  [ScaledIm,scale] = Scaling(ColorCorrected_im,eyes);
+
   RotPoint(1) = round(RotPoint(1) .* scale);
   RotPoint(2) = round(RotPoint(2) .* scale);
-  %Crop image
-  CroppedImage = FaceCrop(ScaledIm,RotPoint);
 
-  %Create Database
-  DB = CreateDatabase();
+  CroppedImage = FaceCrop(rot,RotPoint);
+
   imshow(CroppedImage)
+  
+  DB = CreateDatabase();
+  figure
+  imshow(DB{2});
+
 end
 
 

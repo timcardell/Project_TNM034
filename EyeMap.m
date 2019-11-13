@@ -1,4 +1,4 @@
-function Eye_map = EyeMap(Y,Cb,Cr)
+function [Eye_map,eyes] = EyeMap(Y,Cb,Cr)
 
 Y = im2double(Y);
 Cr = im2double(Cr);
@@ -30,21 +30,26 @@ g2 = strel('sphere',7);
 
 
 Eye_map = Eye_map >=120;
-stats = regionprops('table',Eye_map,'Area');
+Eye_map = imerode(Eye_map,g);
+stats = regionprops('table',Eye_map,'Area','Centroid');
 idx = find([stats.Area] <= 210);
 CC = bwconncomp(Eye_map);
 
-Eye_map = ismember(labelmatrix(CC),idx);
-
 if(CC.NumObjects > 2)
+    
+    Eye_map = ismember(labelmatrix(CC),idx);
     Eye_map = imopen(Eye_map, g2);
 end
+    g = strel('sphere',12);
+    Eye_map = imdilate(Eye_map,g);
+    Eye_map = imfill(Eye_map, 'holes');
+   
+   CC = bwconncomp(Eye_map);
 
-
-imshow(Eye_map)
-hold on
-
-
-
-
+    if(CC.NumObjects < 1)
+        fprintf('No eyes found \n')
+        
+    end
+    eyes = stats.Centroid;
+    
 end
