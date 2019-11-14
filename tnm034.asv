@@ -30,10 +30,13 @@ EyeMask=uint8(EyeMask);
 %Find the mouth mask containing hopefully only the persons mouth
 mouth = MouthMap(Cb, Cr);
 %Find Triangulation between mouth and eyes
-[RotatedImage, RotPoint] = FaceTriangulation(EyeMask, FaceImage);
+[angle, RotPoint] = FaceTriangulation(EyeMask,FaceImage);
+
+%Rotate image
+rot = Rotation(ColorCorrected_im, RotPoint(1), RotPoint(2), angle);
 
 %Scale image
-[ScaledIm,scale] = Scaling(RotatedImage,eyes);
+[ScaledIm,scale] = Scaling(rot,eyes);
 
 %Scale Rotationpoint to the new images dimension
 RotPoint(1) = round(RotPoint(1) .* scale);
@@ -45,7 +48,10 @@ CroppedImage = FaceCrop(ScaledIm,RotPoint);
 %Create Database
 DB = CreateDatabase();
 
-imshow(CroppedImage)
+imshow(FaceImage)
+hold on
+plot(eyes(1,:),eyes(2,:))
+
 end
 
 

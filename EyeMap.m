@@ -40,7 +40,7 @@ if(CC.NumObjects > 2)
     Eye_map = ismember(labelmatrix(CC),idx);
     Eye_map = imopen(Eye_map, g2);
 end
-    g = strel('sphere',12);
+    g = strel('sphere',8);
     Eye_map = imdilate(Eye_map,g);
     Eye_map = imfill(Eye_map, 'holes');
    
@@ -48,8 +48,12 @@ end
 
     if(CC.NumObjects < 1)
         fprintf('No eyes found \n')
-        
     end
-    eyes = stats.Centroid;
+     if(CC.NumObjects > 2)
+        fprintf('more eyes found \n')
+    end
     
+    stats = regionprops('table',Eye_map,'Area','Centroid');
+    eyes = stats.Centroid;
+
 end
