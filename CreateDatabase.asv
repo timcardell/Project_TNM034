@@ -1,0 +1,29 @@
+function [DB,joinedDB] = CreateDatabase()
+
+for i= 1:16
+    if i < 10
+       DB{i} = ColorCorrection(imread(['db1_0' int2str(i) '.jpg'])); 
+    end
+    if i >=10
+       DB{i} = ColorCorrection(imread(['db1_' int2str(i) '.jpg'])); 
+    end
+end
+
+
+for i = 1:16
+    if i == 3
+        continue
+    end
+    if i == 0
+        continue
+    end
+    if i == 12
+       continue 
+    end
+    [Y,Cb,Cr] = YCbCr( DB{i});
+    [EyeMask,eyes] = EyeMap(Y,Cb,Cr);
+    [RotatedImage, RotPoint] = FaceTriangulation(EyeMask, DB{i});
+    imshow(RotatedImage);
+end
+
+end

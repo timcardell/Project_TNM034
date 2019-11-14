@@ -3,7 +3,7 @@ function [image, RotPoint] = FaceTriangulation(eyeMap,im)
 BW = eyeMap*255;
 [labelImage] = bwlabel(BW ~= 0);
 stats = regionprops('table',labelImage,'Centroid');
-centers = stats.Centroid
+centers = stats.Centroid;
 
 %%get angle
 
