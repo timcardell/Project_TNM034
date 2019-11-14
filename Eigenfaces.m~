@@ -1,0 +1,5 @@
+function [output] = EigenFaces(DB,inputArg2)
+
+
+end
+

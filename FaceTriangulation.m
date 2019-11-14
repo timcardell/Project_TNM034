@@ -21,7 +21,7 @@ end
 pointX = centers(1,:);
 pointY = centers(2,:);
 
-RotPoint = (pointX + pointY).'/2
+RotPoint = (pointX + pointY).'/2;
 
 
 end

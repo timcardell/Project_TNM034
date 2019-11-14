@@ -35,15 +35,15 @@ function id = tnm034(im)
  %Rotate image
   rot = Rotation(ColorCorrected_im, RotPoint(1), RotPoint(2), angle);
   
-  %Scale image
+ %Scale image
   [ScaledIm,scale] = Scaling(rot,eyes);
-  %Scale Rotationpoint to the new images dimension
+ %Scale Rotationpoint to the new images dimension
   RotPoint(1) = round(RotPoint(1) .* scale);
   RotPoint(2) = round(RotPoint(2) .* scale);
-  %Crop image
+ %Crop image
   CroppedImage = FaceCrop(ScaledIm,RotPoint);
 
-  %Create Database
+ %Create Database
   DB = CreateDatabase();
   imshow(CroppedImage)
 end
