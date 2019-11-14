@@ -10,7 +10,6 @@ centers = stats.Centroid;
  a1 = [1 0];
  eyeDiff = centers(:,1) - centers(:,2);
  a2 = eyeDiff ./ norm(eyeDiff);
- %angle = acos(dot(a1, a2));
  angle = atan2(centers(2,2)-centers(2,1),centers(1,2)-centers(1,1));
 
 pointX = centers(:,1);
