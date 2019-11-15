@@ -11,46 +11,16 @@ function id = tnm034(im)
 % Your program code.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Change lightning illumination
-ColorCorrected_im = ColorCorrection(im);
-
-%Change Color space to most accurate one (YCbCr)
-[~,Cb,Cr] = YCbCr(ColorCorrected_im);
-
-%Threshold to find Skin_Mask
-
-Skin_mask = SkinMask(Cb,Cr);
-
-FaceImage = ColorCorrected_im.*uint8(Skin_mask);
-[Y,Cb,Cr] = YCbCr(FaceImage);
-
-%Find The eye mask containing hopefully only the persons eyes
-[EyeMask,eyes] = EyeMap(Y,Cb,Cr);
-EyeMask=uint8(EyeMask);
-%Find the mouth mask containing hopefully only the persons mouth
-mouth = MouthMap(Cb, Cr);
-%Find Triangulation between mouth and eyes
-[angle, RotPoint] = FaceTriangulation(EyeMask,FaceImage);
-
-%Rotate image
-rot = Rotation(ColorCorrected_im, RotPoint(1), RotPoint(2), angle);
-
-%Scale image
-[ScaledIm,scale] = Scaling(rot,eyes);
-
-%Scale Rotationpoint to the new images dimension
-RotPoint(1) = round(RotPoint(1) .* scale);
-RotPoint(2) = round(RotPoint(2) .* scale);
-
-%Crop image
-CroppedImage = FaceCrop(ScaledIm,RotPoint);
-
 %Create Database
-DB = CreateDatabase();
+[DB,weights] = CreateDatabase();
 
-imshow(FaceImage)
-hold on
-plot(eyes(1,:),eyes(2,:))
+DetectedFace = DetectFace(im);
+
+if DetectedFace == -1
+   id = 0;
+   return;
+end
+
 
 end
 

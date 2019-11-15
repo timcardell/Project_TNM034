@@ -11,41 +11,30 @@ function id = tnm034(im)
 % Your program code.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Change lightning illumination
-ColorCorrected_im = ColorCorrection(im);
-
-%Change Color space to most accurate one (YCbCr)
-[~,Cb,Cr] = YCbCr(ColorCorrected_im);
-
-%Threshold to find Skin_Mask
-
-Skin_mask = SkinMask(Cb,Cr);
-
-FaceImage = ColorCorrected_im.*uint8(Skin_mask);
-[Y,Cb,Cr] = YCbCr(FaceImage);
-
-%Find The eye mask containing hopefully only the persons eyes
-[EyeMask,eyes] = EyeMap(Y,Cb,Cr);
-EyeMask=uint8(EyeMask);
-%Find the mouth mask containing hopefully only the persons mouth
-mouth = MouthMap(Cb, Cr);
-%Find Triangulation between mouth and eyes
-
-[RotatedImage, RotPoint] = FaceTriangulation(EyeMask, ColorCorrected_im);
-
-%Scale image
-[ScaledIm,scale] = Scaling(RotatedImage,eyes);
-
-%Scale Rotationpoint to the new images dimension
-RotPoint(1) = round(RotPoint(1) .* scale);
-RotPoint(2) = round(RotPoint(2) .* scale);
-
-%Crop image
-CroppedImage = FaceCrop(ScaledIm,RotPoint);
-
 %Create Database
-DB = CreateDatabase();
-%imshow(RotatedImage)
+%[meanImage,weights,u] = CreateDatabase();
+
+DetectedFace = im2double(DetectFace(im));
+
+% if DetectedFace == -1
+%    id = 0;
+%    return;
+% end
+% 
+% 
+% newImage = DetectedFace(:);
+% newDiff2 = newImage - meanImage;
+% newWeight = transpose(u)*newDiff2;
+% V = weights-newWeight;
+% minDiff = sqrt(V*V');
+% 
+% Trash =3.25 *10^-3;
+% if minDiff > Trash
+%    id = 0;
+%    return
+% end
+id = 1;
+
 end
 
 
