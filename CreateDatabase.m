@@ -1,5 +1,5 @@
-function [VecIm,weights,u] = CreateDatabase()
-Size = 12;
+function CreateDatabase()
+Size = 13;
 for i= 1:Size
     if i < 10
        DB{i} = ColorCorrection(imread(['db4_0' int2str(i) '.jpg'])); 
@@ -23,20 +23,15 @@ end
  weights = transpose(u)*Res
  VecIm = meanImage;
 
- [n1,n2] = size(DetectImage);
- im = reshape(VecIm,[n1,n2]);
- %im = cat(3, im(:,1:300), im(:,301:600), im(:,601:900));
+%  [n1,n2] = size(DetectImage);
+%  im = reshape(VecIm,[n1,n2]);
+%  %im = cat(3, im(:,1:300), im(:,301:600), im(:,601:900));
+%  
+%  imshow(im,[]);
+%  
+%  
+
+save('database.mat', 'u','weights','VecIm');
  
- imshow(im,[]);
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
 end

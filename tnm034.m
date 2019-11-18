@@ -12,10 +12,11 @@ function id = tnm034(im)
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Create Database
-[meanImage,weights,u] = CreateDatabase();
+%CreateDatabase();
+load('database');
 
 DetectedFace = im2double(DetectFace(im));
-
+meanImage=VecIm;
 if DetectedFace == -1
    id = 0;
    return;
@@ -25,15 +26,18 @@ end
 newImage = DetectedFace(:);
 newDiff2 = newImage - meanImage;
 newWeight = transpose(u)*newDiff2;
-V = weights-newWeight;
-minDiff = sqrt(V*V');
 
-Trash =3.25 *10^3;
-if minDiff > Trash
-   id = 0;
-   return
+[V,index] = min(sum(sqrt((newWeight-weights).^2)));
+
+Thresh =3.25 *10^-3;
+
+if V > Thresh
+     id = 0;
+     return
 end
-id = 1;
+
+id =index;
+
 
 end
 

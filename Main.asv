@@ -1,0 +1,15 @@
+
+schemer_import('darksteel.prf', true);
+
+im = imread('db1_10.jpg');
+imshow(im)
+ figure
+ ID = tnm034(im)
+
+   if ID < 10
+       imres = ColorCorrection(imread(['db4_0' int2str(ID) '.jpg'])); 
+    end
+    if ID >=10
+       imres = ColorCorrection(imread(['db4_' int2str(ID) '.jpg'])); 
+    end
+imshow(imres)
