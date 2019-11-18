@@ -1,4 +1,4 @@
-function output = FaceCrop(im,TransPoint)
+function output = FaceCrop(im)
     diff = [200, 150];
 
     height = 2 * diff(1);

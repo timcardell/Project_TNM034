@@ -55,7 +55,4 @@ end
     
     stats = regionprops('table',Eye_map,'Area','Centroid');
     eyes = stats.Centroid;
-    plot(eyes(:,1),eyes(:,2),'b*')
-    hold on
-    imshow(Eye_map);
 end

@@ -23,19 +23,19 @@ mouth = MouthMap(Cb, Cr);
 x = x/2;
 y = y/2;
 
-PosDiffX = x-TransPoint(1);
-PosDiffY = y-TransPoint(2);
 
-RotatedImage = imtranslate(RotatedImage,[PosDiffX,PosDiffY]);
+PosDiffX = y-TransPoint(1);
+PosDiffY = x-TransPoint(2);
 
+
+TranslatedImage =imtranslate(RotatedImage,[PosDiffX,PosDiffY]);
 %Scale image
-[ScaledIm,scale] = Scaling(RotatedImage,eyes);
-
+[ScaledIm,scale] = Scaling(TranslatedImage,eyes);
+%ScaledIm = imtranslate(ScaledIm,[PosDiffX,PosDiffY]);
 %Scale Rotationpoint to the new images dimension
 RotPoint(1) = round(RotPoint(1) .* scale);
 RotPoint(2) = round(RotPoint(2) .* scale);
 
 %Crop image
-Face = FaceCrop(ScaledIm,TransPoint);
-
+Face = FaceCrop(ScaledIm);
 end
