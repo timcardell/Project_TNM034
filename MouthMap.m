@@ -14,6 +14,16 @@ mouthMap = imdilate(mouthMap, se);
 
 mouthMap = mouthMap > 0.5;
 
+stats = regionprops('table',mouthMap,'Area','Centroid');
+MouthArea = max(stats.Area);
+idx = find([stats.Area] >= MouthArea);
+CC = bwconncomp(mouthMap);
+
+if(CC.NumObjects > 1)
+    mouthMap = ismember(labelmatrix(CC),idx);
+end
+
+
 output = uint8(255.*imclose(mouthMap,se));
 output = imopen(output,se2);
 end

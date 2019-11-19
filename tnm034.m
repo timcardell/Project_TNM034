@@ -29,8 +29,7 @@ newWeight = transpose(u)*newDiff2;
 
 [V,index] = min(sum(sqrt((newWeight-weights).^2)));
 
-Thresh =3.25 *10^-3;
-
+Thresh =2 *10^3;
 if V > Thresh
      id = 0;
      return

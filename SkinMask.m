@@ -10,12 +10,9 @@ function output = SkinMask(Cb,Cr)
  g = strel('disk', 7);
  output = imclose(output,g);
  output = imfill(output,'holes');
- g = strel('disk', 22);
+ g = strel('disk', 17);
  output = imerode(output,g);
  output = imopen(output,g);
- 
- 
-
-
+ output = imfill(output,'holes');
 
 end

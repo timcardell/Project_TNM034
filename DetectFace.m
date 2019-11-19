@@ -8,14 +8,19 @@ ColorCorrected_im = ColorCorrection(im);
 
 Skin_mask = SkinMask(Cb,Cr);
 
-FaceImage = ColorCorrected_im.*uint8(Skin_mask);
+Face = ColorCorrected_im.*uint8(Skin_mask);
+ %Find the mouth mask containing hopefully only the persons mouth
+  mouth = MouthMap(Cb, Cr);
 
-[Y,Cb,Cr] = YCbCr(FaceImage);
-%Find The eye mask containing hopefully only the persons eyes
-[EyeMask,eyes] = EyeMap(Y,Cb,Cr);
-EyeMask=uint8(EyeMask);
-%Find the mouth mask containing hopefully only the persons mouth
-mouth = MouthMap(Cb, Cr);
+  
+ Face = im2double(Face).*(not(mouth));
+
+ [Y,Cb,Cr] = YCbCr(Face);
+ %Find The eye mask containing hopefully only the persons eyes
+ [EyeMask,eyes] = EyeMap(Y,Cb,Cr);
+ EyeMask=(EyeMask);
+
+
 %Find Triangulation between mouth and eyes
 [RotatedImage, RotPoint,TransPoint] = FaceTriangulation(EyeMask,mouth, ColorCorrected_im);
 [x,y,~] = size(ColorCorrected_im);
@@ -38,4 +43,5 @@ RotPoint(2) = round(RotPoint(2) .* scale);
 
 %Crop image
 Face = FaceCrop(ScaledIm);
+
 end

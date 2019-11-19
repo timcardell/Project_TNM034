@@ -1,11 +1,11 @@
 function CreateDatabase()
-Size = 13;
+Size = 16;
 for i= 1:Size
     if i < 10
-       DB{i} = ColorCorrection(imread(['db4_0' int2str(i) '.jpg'])); 
+       DB{i} = ColorCorrection(imread(['db1_0' int2str(i) '.jpg'])); 
     end
     if i >=10
-       DB{i} = ColorCorrection(imread(['db4_' int2str(i) '.jpg'])); 
+       DB{i} = ColorCorrection(imread(['db1_' int2str(i) '.jpg'])); 
     end
 end
 
@@ -22,14 +22,6 @@ end
  u = Res*eigenVec;
  weights = transpose(u)*Res
  VecIm = meanImage;
-
-%  [n1,n2] = size(DetectImage);
-%  im = reshape(VecIm,[n1,n2]);
-%  %im = cat(3, im(:,1:300), im(:,301:600), im(:,601:900));
-%  
-%  imshow(im,[]);
-%  
-%  
 
 save('database.mat', 'u','weights','VecIm');
  

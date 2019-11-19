@@ -1,17 +1,28 @@
 
 schemer_import('darksteel.prf', true);
+for i = 1:16
+    if i < 10
+       im = (imread(['db1_0' int2str(i) '.jpg'])); 
+    end
 
-im = imread('db1_01.jpg');
-imshow(im)
-figure
-ID = tnm034(im);
+    if i >=10
+       im = (imread(['db1_' int2str(i) '.jpg'])); 
+    end
 
-if ID < 10
-   imres = (imread(['db4_0' int2str(ID) '.jpg'])); 
+    ID = tnm034(im)
+
+    if ID < 1
+       ID
+    end
+    if ID < 10 & ID >= 1
+       imres = (imread(['db1_0' int2str(ID) '.jpg'])); 
+    end
+
+    if ID >=10
+       imres = (imread(['db1_' int2str(ID) '.jpg'])); 
+    end
+    Res = cat(2,im,imres);
+    figure
+    imshow(Res)
 end
- 
-if ID >=10
-   imres = (imread(['db4_' int2str(ID) '.jpg'])); 
-end
 
-imshow(imres)
