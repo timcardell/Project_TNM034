@@ -26,3 +26,4 @@ for i = 1:16
     imshow(Res)
 end
 
+imshow(imres)
