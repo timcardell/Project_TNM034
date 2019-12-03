@@ -14,22 +14,20 @@ for i = 1:16
     if ID < 1
         ID
     end
-    if ID < 10 & ID >= 1
+    if ID < 10 && ID >= 1
         imres = (imread(['db1_0' int2str(ID) '.jpg']));
         Res = cat(2,im,imres);
-          figure
-         imshow(Res)
+      
+        % imshow(Res) %Remove comment to view matched face
         
     end
     
     if ID >=10
         imres = (imread(['db1_' int2str(ID) '.jpg']));
         Res = cat(2,im,imres);
-           figure
-            imshow(Res)
+          
+          %  imshow(Res) %Remove comment to view matched face
         
     end
     
 end
-
-imshow(imres)

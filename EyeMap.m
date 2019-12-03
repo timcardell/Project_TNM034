@@ -48,7 +48,7 @@ function [Eye_map,eyes] = EyeMap(Y,Cb,Cr)
          end
          
          if(CC.NumObjects > 2)
-            fprintf('more eyes found \n');
+           % fprintf('more eyes found \n');
             MaxArea = sort(stats.Area);
 
             out = MaxArea(end-1);

@@ -12,7 +12,7 @@ end
 for i = 1:Size
     DetectImage = DetectFace(DB{i});
     DetectImage = (im2double(DetectImage));
-    VectorImage(:,i) = DetectImage(:)
+    VectorImage(:,i) = DetectImage(:);
 end
 
 meanImage = mean(VectorImage,2);
@@ -20,7 +20,7 @@ meanImage = mean(VectorImage,2);
 Res = VectorImage-meanImage;
 [eigenVec,~] = eigs(transpose(Res)*Res,Size);
 u = Res*eigenVec;
-weights = transpose(u)*Res
+weights = transpose(u)*Res;
 VecIm = meanImage;
 
 save('database.mat', 'u','weights','VecIm');

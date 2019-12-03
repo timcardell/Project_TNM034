@@ -36,8 +36,6 @@ PosDiffY = x-TransPoint(2);
 
 TranslatedImage = imtranslate(RotatedImage,[PosDiffX,PosDiffY]);
 
-figure
-imshow(TranslatedImage)
 %Scale image
 [ScaledIm,scale] = Scaling(TranslatedImage,eyes);
 %ScaledIm = imtranslate(ScaledIm,[PosDiffX,PosDiffY]);
