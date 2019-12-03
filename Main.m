@@ -32,3 +32,4 @@ for i = 1:16
     
 end
 
+imshow(imres)
